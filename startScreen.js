@@ -40,11 +40,14 @@ var startScreen = (function(input) {
   	// draw instructions to player
   	ctx.fillStyle = color;
   	ctx.font = '24px monospace';
-  	centerText(ctx, 'clickto begin', y + 30);
+  	centerText(ctx, 'click to begin', y + 30);
   }
 
+  var rate = 0.128; // R/ms
+
   // update color & check for input from user
-  function update() {
+  function update(elapsed) {
+  	var amount = rate * elapsed;
   	// want hue to oscillate betw 0 & 255
   	hue += 1 * direction;
   	if (hue > 255) {
@@ -52,6 +55,8 @@ var startScreen = (function(input) {
   	} else if (hue < 0) {
   		direction = 1;
   	}
+
+  	rounted_hue = Math.round(hue);
 
   	// magically capturing state of game &
   	// not dealing with events inside game loop
