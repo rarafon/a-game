@@ -25,4 +25,17 @@ var mainGameScreen (function() {
 			entities[entityIndex].draw(ctx);		
 		}
 	}
+
+	function update(elapsed) {
+		var entityIndex = entities.length - 1;
+		for ( ; entityIndex != 0; entityIndex--) {
+			entities[entityIndex].update(elapsed);
+		}
+	}
+
+	return {
+		draw: draw,
+		update: update,
+		start: start
+	};
 })
